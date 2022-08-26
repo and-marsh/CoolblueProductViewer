@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="product"
+            type="com.example.android.coolblueproductviewer.entities.Product" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/product_image"
+            android:layout_width="wrap_content"
+            android:layout_height="300dp"
+            android:layout_marginTop="8dp"
+            android:scaleType="fitStart"
+            app:imageUrl="@{product.productImage}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_height="300dp"
+            tools:layout_width="150dp"
+            tools:srcCompat="@drawable/ic_broken_image" />
+
+        <TextView
+            android:id="@+id/product_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{product.productName}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/product_image"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Apple MacBook Air 13,3 (2017) MQD32N" />
+
+        <TextView
+            android:id="@+id/price_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{@string/price_euro(product.salesPriceIncVat)}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/product_image"
+            app:layout_constraintTop_toBottomOf="@+id/product_title"
+            tools:text="1234 $" />
+
+
+        <ImageView
+            android:id="@+id/star_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:foregroundGravity="center"
+            app:layout_constraintStart_toEndOf="@+id/product_image"
+            app:layout_constraintTop_toBottomOf="@+id/price_text"
+            app:srcCompat="@drawable/ic_baseline_star_24" />
+
+        <TextView
+            android:id="@+id/review_score"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center_vertical"
+            android:text="@{@string/review_score( product.reviewInformation.reviewSummary.reviewAverage, product.reviewInformation.reviewSummary.reviewCount)}"
+            app:layout_constraintBottom_toBottomOf="@+id/star_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/star_icon"
+            app:layout_constraintTop_toTopOf="@+id/star_icon"
+            tools:text="9.6 (2134 reviews)" />
+
+        <TextView
+            android:id="@+id/usp_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/product_image"
+            app:layout_constraintTop_toBottomOf="@+id/star_icon"
+            app:uspsFormatted="@{product.uspList}"
+            tools:text="-21323423\n-ndfsfsdf\n-sdfdsfsdfs" />
+
+        <ImageView
+            android:id="@+id/delevery_tomorrow_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/product_image"
+            app:srcCompat="@drawable/ic_round_directions_car_24" />
+
+        <TextView
+            android:id="@+id/tomorrow_delivery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/morgen_bezorged"
+            app:layout_constraintBottom_toBottomOf="@+id/delevery_tomorrow_icon"
+            app:layout_constraintStart_toEndOf="@+id/delevery_tomorrow_icon"
+            app:layout_constraintTop_toTopOf="@+id/delevery_tomorrow_icon" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/promo_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/white"
+            android:theme="@style/Theme.MaterialComponents.Light"
+            app:chipBackgroundColor="@color/chip_blue"
+            app:chipFormatted="@{product.promoIcon.text}"
+            app:chipMinHeight="24dp"
+            app:ensureMinTouchTargetSize="false"
+            app:layout_constraintStart_toEndOf="@+id/product_image"
+            app:layout_constraintTop_toBottomOf="@+id/usp_list"
+            tools:text="middenklasse iPhone" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/promo_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/white"
+            android:theme="@style/Theme.MaterialComponents.Light"
+            app:chipBackgroundColor="@color/chip_blue"
+            app:chipFormatted="@{product.promoIcon.type}"
+            app:chipMinHeight="24dp"
+            app:ensureMinTouchTargetSize="false"
+            app:layout_constraintStart_toEndOf="@+id/product_image"
+            app:layout_constraintTop_toBottomOf="@+id/promo_text"
+            tools:text="coolblues-choice" />
+
+        <ImageView
+            android:id="@+id/cart_icon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_baseline_shopping_cart_24" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
