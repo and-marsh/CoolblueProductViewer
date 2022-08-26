@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">CoolblueProductViewer</string>
+    <string name="price_euro">%s €</string>
+    <string name="review_score">%s (%s reviews)</string>
+    <string name="morgen_bezorged">Morgen bezorged!</string>
 </resources>
